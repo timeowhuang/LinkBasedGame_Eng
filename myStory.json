@@ -44,7 +44,7 @@
         {
           "Text": "Take the paper",
           "Target": "Doll_Right_Hand",
-          "AddItem": {"name": "Mysterious Note", "description": "A note reading: If you stuck,check README file"},
+          "AddItem": {"name": "Mysterious Note", "description": "A note reading: If you stuck,check README file (https://timeowhuang.github.io/LinkBasedGame_Eng/README.md)"},
           "AfterPickDescription": "You take the note. It reads: 'If you stuck,check README file.'"
         },
         {"Text": "Continue inspecting the doll", "Target": "Doll", "RequiresItemNotExist": "Mysterious Note"},
