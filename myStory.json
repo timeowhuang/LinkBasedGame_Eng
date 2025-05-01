@@ -1,0 +1,218 @@
+{
+  "Title": "Escape from the Room",
+  "Credits": "Created by Eren Huang (thuan112@ucsc.edu).",
+  "InitialLocation": "Master_Room",
+  "Locations": {
+    "Master_Room": {
+      "Body": "You are in a spacious master bedroom. The room features a bed, a small cabinet, and a table with a creepy puppet doll sitting on it. There are three doors: a basement door with a combination lock, a sliding glass door leading to the bathroom, and a metal door that only opens when powered.",
+      "Choices": [
+        {"Text": "Inspect the puppet doll", "Target": "Doll"},
+        {"Text": "Check the basement door", "Target": "Basement_Door"},
+        {"Text": "Open the sliding glass door", "Target": "Bathroom"},
+        {"Text": "Examine the metal door", "Target": "Hallway_Door"}
+      ]
+    },
+
+    "Doll": {
+      "Body": "This is a creepy puppet doll sitting on the table. Its glass eyes seem to lock onto yours.",
+      "Choices": [
+        {"Text": "Inspect the left hand", "Target": "Doll_Left_Hand"},
+        {"Text": "Inspect the right hand", "Target": "Doll_Right_Hand"},
+        {"Text": "Inspect the chest", "Target": "Doll_Chest"},
+        {"Text": "Inspect the face", "Target": "Doll_Face"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Doll_Left_Hand": {
+      "Body": "The puppet's left hand wears a rusty, blood-stained ring.",
+      "Choices": [
+        {
+          "Text": "Remove the ring",
+          "Target": "Doll_Left_Hand",
+          "AddItem": {"name": "Blood-stained Ring", "description": "A ring stained with dried blood. The engraving inside is unreadable."},
+          "AfterPickDescription": "You remove the blood-stained ring. There appears to be some words, but it’s obscured by the residue."
+        },
+        {"Text": "Continue inspecting the doll", "Target": "Doll", "RequiresItemNotExist": "Blood-stained Ring"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Doll_Right_Hand": {
+      "Body": "The puppet's right hand tightly grips a crumpled piece of paper.",
+      "Choices": [
+        {
+          "Text": "Take the paper",
+          "Target": "Doll_Right_Hand",
+          "AddItem": {"name": "Mysterious Note", "description": "A note reading: If you stuck,check README file"},
+          "AfterPickDescription": "You take the note. It reads: 'If you stuck,check README file.'"
+        },
+        {"Text": "Continue inspecting the doll", "Target": "Doll", "RequiresItemNotExist": "Mysterious Note"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Doll_Face": {
+      "Body": "You examine the puppet's face closely and notice the right eye is loose and can be removed.",
+      "Choices": [
+        {
+          "Text": "Remove the right eyeball",
+          "Target": "Doll_Face",
+          "AddItem": {"name": "Puppet Right Eye", "description": "A small glass eyeball, oddly shaped like a mechanical component."},
+          "AfterPickDescription": "You carefully remove the puppet's right eyeball."
+        },
+        {"Text": "Continue inspecting the doll", "Target": "Doll", "RequiresItemNotExist": "Puppet Right Eye"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Doll_Chest": {
+      "Body": "The puppet's chest is tightly bound with bandages. Something is hidden inside. You need a sharp tool to cut it open.",
+      "Choices": [
+        {"Text": "Cut the bandages with scissors", "Target": "Doll_Chest_Open", "RequiresItem": "Kitchen Scissors", 
+        "LockedDescription": "The bandages are too tight; you need something sharp to cut them."},
+        {"Text": "Continue inspecting the doll", "Target": "Doll"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Doll_Chest_Open": {
+      "Body": "You cut through the bandages with the scissors, revealing a heart-shaped wooden box strapped inside.",
+      "Choices": [
+        {"Text": "Open the wooden box", "Target": "Doll_Box_Open", "AddItem": {"name": "Heart-shaped Box", 
+        "description": "An intricately carved wooden box in the shape of a heart."}, 
+        "AfterPickDescription": "You pick up the box. It looks like it can be opened."},
+        {"Text": "Continue inspecting the doll", "Target": "Doll"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Doll_Box_Open": {
+      "Body": "You open the heart-shaped box and find a small brass key inside.",
+      "Choices": [
+        {"Text": "Take the key", "Target": "Doll_Box_Open", "AddItem": 
+        {"name": "Front Door Key", "description": "A small brass key that looks like it might open an exit door."}, 
+        "AfterPickDescription": "You take the key and add it to your inventory."},
+        {"Text": "Continue inspecting the doll", "Target": "Doll", "RequiresItemNotExist": "Front Door Key"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Basement_Door": {
+      "Body": "This door leads to the basement and has a six-digit lock.",
+      "Choices": [{"Text": "Enter the code", "Target": "Basement", "NeedsPassword": true, "PasswordPrompt": "Enter the 6-digit code:", 
+      "CorrectPassword": "071522"}, 
+      {"Text": "Return to the master bedroom", "Target": "Master_Room"}]
+    },
+
+    "Basement": {
+      "Body": "You enter a dark, damp basement. Tools line the walls and there is a large power switch in the corner.",
+      "Choices": [{"Text": "Flip the power switch", "Target": "Basement_Power", "AddItem": 
+      {"name": "Power On", "description": "The house’s power has been restored."}, 
+      "AfterPickDescription": "You flip the switch. You hear the lights hum on throughout the house."}, 
+      {"Text": "Return upstairs", "Target": "Master_Room"}]
+    },
+
+    "Basement_Power": {
+      "Body": "The power is on. The lights in the basement now glow brightly.",
+      "Choices": [{"Text": "Return to the master bedroom", "Target": "Master_Room"}]
+    },
+
+    "Hallway_Door": {
+      "Body": "This heavy metal door leads to a hallway. It requires power to open.",
+      "Choices": [{"Text": "Try to open the door", "Target": "Hallway", "RequiresItem": "Power On", 
+      "LockedDescription": "The door has no power; it won’t budge."}, 
+      {"Text": "Return to the master bedroom", "Target": "Master_Room"}]
+    },
+
+    "Hallway": {
+      "Body": "You step into a long hallway with two doors ahead: one to a library and one to a living room. The living room door is locked.",
+      "Choices": [{"Text": "Enter the library", "Target": "Library"}, 
+      {"Text": "Check the living room door", "Target": "Living_Room_Door"}, 
+      {"Text": "Return to the master bedroom", "Target": "Master_Room"}]
+    },
+
+    "Library": {
+      "Body": "You are in a library filled with books. One book on a pedestal looks out of place.",
+      "Choices": [{"Text": "Examine the special book", "Target": "Library_Special_Book", "AddItem": 
+      {"name": "Library Clue", "description": "A note inside reads: 'On a farm there are chickens, cats, and rabbits total 211 legs. Number of Cat and rabbits are the same. One cat has only three legs. How many of each?'"}, 
+      "AfterPickDescription": "You open the book and find a hidden note: 'On a farm there are chickens, cats, and rabbits total 211 legs. Number of Cat and rabbits are the same. One cat has only three legs. How many of each?'"}, 
+      {"Text": "Return to the hallway", "Target": "Hallway"}]
+    },
+
+    "Library_Special_Book": {
+      "Body": "The note is tucked between the pages of the special book.",
+      "Choices": [{"Text": "Return to the library", "Target": "Library"},
+      {"Text": "Return to the hallway", "Target": "Hallway"}]
+    },
+
+    "Living_Room_Door": {
+      "Body": "The living room door has a 6-digit keypad lock.",
+      "Choices": [{"Text": "Enter the code", "Target": "Living_Room", 
+      "NeedsPassword": true, "PasswordPrompt": "Enter the 6-digit code:", 
+      "CorrectPassword": "661010"}, 
+      {"Text": "Return to the hallway", "Target": "Hallway"}]
+    },
+
+    "Living_Room": {
+      "Body": "You enter the living room. There is a sofa, a TV, a kitchen door, and a locked exit door.",
+      "Choices": [{"Text": "Go to the kitchen", "Target": "Kitchen"}, 
+      {"Text": "Inspect the exit door", "Target": "Exit_Door"}, 
+      {"Text": "Return to the hallway", "Target": "Hallway"}]
+    },
+
+    "Kitchen": {
+      "Body": "The kitchen is neat and clean. A sharp pair of scissors rests in an open drawer.",
+      "Choices": [{"Text": "Take the scissors", "Target": "Kitchen", "AddItem": 
+      {"name": "Kitchen Scissors", "description": "A sharp pair of kitchen scissors."}, 
+      "AfterPickDescription": "You place the scissors into your inventory."}, 
+      {"Text": "Return to the living room", "Target": "Living_Room"}]
+    },
+
+    "Bathroom": {
+      "Body": "You push open the sliding glass door to the bathroom. Inside you see a sink, a mirror, and a shower area.",
+      "Choices": [{"Text": "Inspect the faucet", "Target": "Bathroom_Faucet"}, 
+      {"Text": "Return to the master bedroom", "Target": "Master_Room"}]
+    },
+
+    "Bathroom_Faucet": {
+      "Body": "At the faucet handle there is a circular recess. It looks like a component is missing.",
+      "Choices": [{"Text": "Try installing the puppet eye", "Target": "Bathroom_Faucet_Fixed", 
+      "RequiresItem": "Puppet Right Eye", "LockedDescription": "You need the correct component to fix the faucet."}, 
+      {"Text": "Return to the bathroom", "Target": "Bathroom"}]
+    },
+
+    "Bathroom_Faucet_Fixed": {
+      "Body": "You slot the puppet eye into the recess. The faucet handle now turns smoothly.",
+      "Choices": [
+        {
+          "Text": "Clean the blood-stained ring",
+          "Target": "Bathroom_Ring_Clean",
+          "ReplaceItem": "Blood-stained Ring",
+          "WithItem": {"name": "Inscribed Ring", "description": "A ring now free of blood, with the inscription '071522' revealed."}
+        },
+        {"Text": "Return to the bathroom", "Target": "Bathroom"}
+      ]
+    },
+
+    "Bathroom_Ring_Clean": {
+      "Body": "You wash the ring under the faucet and the blood washes away, revealing the inscription '071522' inside.",
+      "Choices": [
+        {"Text": "Return to the bathroom", "Target": "Bathroom"},
+        {"Text": "Return to the master bedroom", "Target": "Master_Room"}
+      ]
+    },
+
+    "Exit_Door": {
+      "Body": "This is an exit door with a keyhole.",
+      "Choices": [{"Text": "Use the front door key", "Target": "Beyond", "RequiresItem": "Front Door Key", 
+      "LockedDescription": "The door is locked; you need the correct key."}, 
+      {"Text": "Return to the living room", "Target": "Living_Room"}]
+    },
+
+    "Beyond": {
+      "Body": "Congratulations! You open the door and step outside into the sunlight, free at last.",
+      "Choices": [{"Text": "End the game", "Target": "End"}]
+    }
+  }
+}
