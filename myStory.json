@@ -135,7 +135,7 @@
     "Library": {
       "Body": "You are in a library filled with books. One book on a pedestal looks out of place.",
       "Choices": [{"Text": "Examine the special book", "Target": "Library_Special_Book", "AddItem": 
-      {"name": "Library Clue", "description": "A note inside reads: 'On a farm there are chickens, cats, and rabbits total 211 legs. Number of Cat and rabbits are the same. One cat has only three legs. How many of each?'"}, 
+      {"name": "Library Clue", "description": "A note inside reads: 'On a farm number of chickens 60+a, number of cats a+4, and rabbits total 211 legs. Number of Cat and rabbits are the same. One cat has only three legs. How many of each?'"}, 
       "AfterPickDescription": "You open the book and find a hidden note: 'On a farm there are chickens, cats, and rabbits total 211 legs. Number of Cat and rabbits are the same. One cat has only three legs. How many of each?'"}, 
       {"Text": "Return to the hallway", "Target": "Hallway"}]
     },
